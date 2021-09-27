@@ -14,37 +14,18 @@
   // Instantiate blog post object
   $post = new Post($db);
 
-  // Blog post query
-  $result = $post->read();
-  // Get row count
-  $num = $result->rowCount();
+  // Get ID
+  $post->user_id = isset($_GET['user_id']) ? $_GET['user_id'] : die();
 
-  // Check if any posts
-  if($num > 0) {
-    // Post array
-    $posts_arr = array();
-    // $posts_arr['data'] = array();
+  // Get post
+  $result = $post->user_read();
 
-    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      extract($row);
+  // Create array
+  /*$post_arr = array(
+    'title' => $post->title,
+    'metacontent' => $post->metacontent,
+    'img_link' => $post->img_link,   
+  );*/
 
-      $post_item = array(
-        'title' => $title,
-        'content' => html_entity_decode($metacontent),
-        'image_link' => $image_link
-      );
-
-      // Push to "data"
-      array_push($posts_arr, $post_item);
-      // array_push($posts_arr['data'], $post_item);
-    }
-
-    // Turn to JSON & output
-    echo json_encode($posts_arr);
-
-  } else {
-    // No Posts
-    echo json_encode(
-      array('message' => 'No Posts Found')
-    );
-  }
+  // Make JSON
+  print_r(json_encode($result));

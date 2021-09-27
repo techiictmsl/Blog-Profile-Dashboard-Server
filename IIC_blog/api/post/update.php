@@ -22,7 +22,7 @@
   // Set ID to update
   $post->article_id = $data->article_id;
 
-  $post->status = $data->status;
+  $post->status = $data->article_status;
 
 
   // Update post
