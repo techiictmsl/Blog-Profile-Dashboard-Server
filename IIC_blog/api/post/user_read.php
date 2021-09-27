@@ -26,12 +26,11 @@
     'body' => $post->body,
     'image_link' => $post->image_link,
     'auth_name' => $post->auth_name,
-    'auth_designation' => $post->auth_designation,
+    'Auth_designation' => $post->Auth_designation,
     'facebook_link' => $post->facebook_link,
     'twitter_link' => $post->twitter_link,
     'linkedin_link' => $post->linkedin_link,
-
-    
+   
   );
 
   // Make JSON

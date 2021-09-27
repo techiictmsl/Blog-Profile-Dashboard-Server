@@ -15,11 +15,11 @@
     public $title;
     public $body;
     public $auth_name;
-    public $auth_designation;
+    public $Auth_designation;
     public $write_date;
     public $domain;
-    public $sub_domain;
-    public $status;
+    public $subdomain;
+    public $article_status;
     public $likes;
     public $views;
     public $image_link;
@@ -75,7 +75,7 @@
  
     //Get single post
     public function read_single() {
-      $query = 'SELECT auth_name, p.image_link, p.article_id, p.domain, p.sub_domain, p.auth_designation, p.title, p.body, p.likes, p.status, p.write_date, p.facebook_link, p.twitter_link, p.linkedin_link
+      $query = 'SELECT auth_name, p.image_link, p.article_id, p.domain, p.subdomain, p.Auth_designation, p.title, p.body, p.likes, p.article_status, p.write_date, p.facebook_link, p.twitter_link, p.linkedin_link
                                 FROM ' . $this->table . ' p
                   
                                 WHERE 
@@ -95,13 +95,13 @@
       //Set properties
       $this->auth_name = $row['auth_name'];
       $this->image_link = $row['image_link'];
-      $this->auth_designation = $row['auth_designation'];
+      $this->Auth_designation = $row['Auth_designation'];
       $this->title = $row['title'];
       $this->domain = $row['domain'];
-      $this->sub_domain = $row['sub_domain'];
+      $this->subdomain = $row['subdomain'];
       $this->body = $row['body'];
       $this->likes = $row['likes'];
-      $this->status = $row['status'];
+      $this->article_status = $row['article_status'];
       $this->write_date = $row['write_date'];
       $this->facebook_link = $row['facebook_link'];
       $this->twitter_link = $row['twitter_link'];
@@ -119,7 +119,7 @@
     public function update() {
           // Create query
           $query = 'UPDATE ' . $this->table . '
-                                SET status = :status
+                                SET article_status = :article_status
                                 WHERE article_id = :article_id';
 
           // Prepare statement
@@ -132,7 +132,7 @@
 
           // Bind data
 
-          $stmt->bindParam(':status', $this->status);
+          $stmt->bindParam(':article_status', $this->article_status);
           $stmt->bindParam(':article_id', $this->article_id);
 
           // Execute query
@@ -163,7 +163,7 @@
      */
   //User Dashboard
   public function user_read() {
-    $query = 'SELECT auth_name, p.image_link, p.user_id, p.domain, p.auth_designation, p.title, p.body, p.likes, p.status, p.write_date, p.facebook_link, p.twitter_link, p.linkedin_link
+    $query = 'SELECT auth_name, p.image_link, p.user_id, p.domain, p.Auth_designation, p.title, p.body, p.likes, p.article_status, p.write_date, p.facebook_link, p.twitter_link, p.linkedin_link
                               FROM ' . $this->table . ' p
                 
                               WHERE 
@@ -182,12 +182,12 @@
     //Set properties
     $this->auth_name = $row['auth_name'];
     $this->image_link = $row['image_link'];
-    $this->auth_designation = $row['auth_designation'];
+    $this->Auth_designation = $row['Auth_designation'];
     $this->title = $row['title'];
     $this->domain = $row['domain'];
     $this->body = $row['body'];
     $this->likes = $row['likes'];
-    $this->status = $row['status'];
+    $this->article_status = $row['article_status'];
     $this->write_date = $row['write_date'];
     $this->facebook_link = $row['facebook_link'];
     $this->twitter_link = $row['twitter_link'];
